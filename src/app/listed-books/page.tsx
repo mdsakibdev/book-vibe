@@ -3,9 +3,8 @@
 import ListedBooks from "@/components/shared/$RPDYY3G/ListedBooks";
 import { BookContext } from "@/context/BooksContext";
 import { IBook } from "@/types/books.type";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const ListedBook = () => {
   const context = useContext(BookContext);

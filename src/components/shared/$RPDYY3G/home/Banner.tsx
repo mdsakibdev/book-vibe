@@ -1,4 +1,3 @@
-import React from 'react';
 import bannerImage from '@/assets/banner-image.png'
 import Image from 'next/image';
 import Link from 'next/link';

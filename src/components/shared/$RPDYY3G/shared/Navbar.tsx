@@ -64,7 +64,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={-1}
-              className="menu dropdown-content z-[60] mt-3 w-64 rounded-2xl border border-base-300 bg-base-100 p-3 shadow-xl"
+              className="menu dropdown-content z-60 mt-3 w-64 rounded-2xl border border-base-300 bg-base-100 p-3 shadow-xl"
             >
               {navLinks.map((link) => (
                 <li key={link.href}>

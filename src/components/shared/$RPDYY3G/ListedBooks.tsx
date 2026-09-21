@@ -1,7 +1,6 @@
 import { IBook } from '@/types/books.type';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 type ListedBooksProps = {
   book: IBook;

@@ -216,7 +216,7 @@ const ReadBooks = () => {
   if (loading) {
     return (
       <section className="container mx-auto px-4 py-10">
-        <div className="flex min-h-[400px] items-center justify-center">
+        <div className="flex min-h-100 items-center justify-center">
           <span className="loading loading-spinner loading-lg text-success" />
         </div>
       </section>
@@ -440,7 +440,7 @@ const ReadBooks = () => {
              Empty State
           ------------------------------------------ */
 
-          <div className="flex min-h-[420px] flex-col items-center justify-center rounded-3xl border border-dashed border-base-300 bg-base-100 px-6 text-center shadow-sm">
+          <div className="flex min-h-105 flex-col items-center justify-center rounded-3xl border border-dashed border-base-300 bg-base-100 px-6 text-center shadow-sm">
 
             <div className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-success/10 text-4xl">
               📖
