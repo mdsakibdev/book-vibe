@@ -9,15 +9,22 @@ interface IBookParamsDetailType {
 }
 
 const getBooks = async (): Promise<IBook[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL} /booksData.json`);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch books");
+  try{
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`
+    );
+    
+    if (!res.ok) {
+      throw new Error("Failed to fetch books");
+    }
+    
+    const data = await res.json();
+    
+    return data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    return [];
   }
-
-  const data = await res.json();
-
-  return data;
 };
 
 const BookPageDetail = async ({
@@ -192,9 +199,9 @@ const BookPageDetail = async ({
               {/* Buttons */}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
 
-                <ReadButton book={book}/>
+                <ReadButton book={book} />
 
-                <WishlistButton book={book}/>
+                <WishlistButton book={book} />
 
               </div>
 
