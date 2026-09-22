@@ -1,44 +1,41 @@
+"use client";
+
 import ReadButton from "@/components/bookDetail/ReadButton";
 import WishlistButton from "@/components/bookDetail/WishlistButton";
 import { IBook } from "@/types/books.type";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState, use } from "react";
 
 interface IBookParamsDetailType {
   params: Promise<{ id: string }>;
 }
 
-const getBooks = async (): Promise<IBook[]> => {
-  try{
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`
+const BookPageDetail = ({ params }: IBookParamsDetailType) => {
+  const { id } = use(params);
+
+  const [book, setBook] = useState<IBook | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+useEffect(() => {
+  fetch("/booksData.json")
+    .then((res) => res.json())
+    .then((data: IBook[]) => {
+      setBook(data.find((book) => String(book.bookId) === String(id)) || null);
+      setLoading(false)
+    });
+}, [id]);
+
+  console.log(book);
+
+  // Loading state
+  if (loading) {
+    return (
+      <section className="flex min-h-[70vh] items-center justify-center px-4">
+        <span className="loading loading-spinner loading-lg text-success" />
+      </section>
     );
-    
-    if (!res.ok) {
-      throw new Error("Failed to fetch books");
-    }
-    
-    const data = await res.json();
-    
-    return data;
-  } catch (error) {
-    console.error("Error fetching books:", error);
-    return [];
   }
-};
-
-const BookPageDetail = async ({
-  params,
-}: IBookParamsDetailType) => {
-  const { id } = await params;
-
-  const booksData = await getBooks();
-
-  const book = booksData.find(
-    (book: IBook) => String(book.bookId) === String(id)
-  );
-
-  console.log(book, "book");
 
   // Book not found
   if (!book) {
